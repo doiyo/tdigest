@@ -7,10 +7,10 @@ module.exports = function(grunt) {
                 exports: 'tdigest',
                 comments: true
             },
-            'dist/tdigest.js': 'tdigest.js'
+            'dist/tdigest.umd.js': 'tdigest.js'
         }
     });
- 
+
     grunt.task.loadNpmTasks('grunt-pure-cjs');
     grunt.registerTask('dist', ['pure_cjs']);
 }

@@ -280,15 +280,22 @@
                 return node !== null && node.red;
             }
             function single_rotate(root, dir) {
+                if (root === null) { return root; }
                 var save = root.get_child(!dir);
-                root.set_child(!dir, save.get_child(dir));
+                if (save === null) { return root; }
+                var child = save.get_child(dir);
+                root.set_child(!dir, child);
                 save.set_child(dir, root);
                 root.red = true;
                 save.red = false;
                 return save;
             }
             function double_rotate(root, dir) {
-                root.set_child(!dir, single_rotate(root.get_child(!dir), !dir));
+                if (root === null) { return root; }
+                var first = root.get_child(!dir);
+                if (first !== null) {
+                    root.set_child(!dir, single_rotate(first, !dir));
+                }
                 return single_rotate(root, dir);
             }
             module.exports = RBTree;
